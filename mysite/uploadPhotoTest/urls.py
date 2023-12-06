@@ -14,19 +14,13 @@ Including another URLconf
     1. Import the include() function: from django.urls import include, path
     2. Add a URL to urlpatterns:  path('blog/', include('blog.urls'))
 """
+from django.contrib import admin
+from django.urls import path
+from . views import test2
 from django.conf import settings
 from django.conf.urls.static import static
-from django.contrib import admin
-from django.urls import path,include
 
 
 urlpatterns = [
-    path('admin/', admin.site.urls),
-    path("test/",include("TempApp.urls")),
-    path("uploadphototest/",include("uploadPhotoTest.urls"))
-] 
-
-#not needed if not meant to have directly access to the file/picture through url 
-#for example though "http://127.0.0.1:8000/media/cars/cat.jpg/"
-if settings.DEBUG:
-    urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
+    path('index/<int:pk>', test2),
+]
