@@ -5,8 +5,9 @@ from gallery.forms import UploadForm
 
 def display_images(request):
     if request.method == 'GET':
-        posts = Post.objects.all()
-        return render(request, 'gallery/index.html', {'posts' : posts})
+        posts_of_user = Post.objects.filter(user__id = request.user.id)
+        posts_of_rest_users = Post.objects.exclude(user__id = request.user.id)
+        return render(request, 'gallery/index.html', {'user_posts' : posts_of_user,"rest_posts":posts_of_rest_users})
 
     
 from django.contrib.auth.decorators import login_required

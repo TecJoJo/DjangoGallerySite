@@ -16,8 +16,9 @@
             <p><a href="{% url 'gallery:image_upload' %}">Upload more images</a></p>
 
         </div>
-        
-        {% for post in posts %}
+        {% if user.is_authenticated %}
+        <h1>Your Posts</h1>
+        {% for post in user_posts %}
         <div class="col-md-4">
 
             <p>{{ post.description }}</p>
@@ -25,6 +26,19 @@
             <p>Uploader:{{post.user.username}} </p>
         </div>
         {% endfor %}
+        {% endif %}
+
+    
+        <h1>Posts by other users</h1>
+        {% for post in rest_posts %}
+        <div class="col-md-4">
+
+            <p>{{ post.description }}</p>
+            <a href={% url "gallery:detail" post.id %}><img src="{{ post.image.url }}" class="img-responsive" style="width: 100%; float: left; margin-right: 10px;" /></a>
+            <p>Uploader:{{post.user.username}} </p>
+        </div>
+        {% endfor %}
+
 
     </body>
 </html>

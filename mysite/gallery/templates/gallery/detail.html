@@ -21,10 +21,12 @@
         <p><strong>Tags:</strong> {{ post.tags }}</p>
     {% endif %}
 
+    {% if user.id == post.user.id%}
     <form method="post" action="{% url 'gallery:detail' post.id %}">
         {% csrf_token %}
         <button type="submit" name="delete">Delete</button>
     </form>
+    {% endif %}
 
 </body>
 </html>
