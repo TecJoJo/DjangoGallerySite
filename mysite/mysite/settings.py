@@ -37,8 +37,8 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
-    "TempApp.apps.TempappConfig",
-    "uploadPhotoTest.apps.UploadphototestConfig",
+    
+    
     'account.apps.AccountConfig',
     'gallery.apps.GalleryConfig',
 
