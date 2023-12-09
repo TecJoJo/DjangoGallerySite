@@ -40,6 +40,8 @@ INSTALLED_APPS = [
     "TempApp.apps.TempappConfig",
     "uploadPhotoTest.apps.UploadphototestConfig",
     'account.apps.AccountConfig',
+    'gallery.apps.GalleryConfig',
+
 ]
 
 MIDDLEWARE = [

@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{{ post.description }}</title>
+</head>
+<body>
+
+    <h1>{{ post.description }}</h1>
+
+    <img src="{{ post.image.url }}" alt="{{ post.description }}">
+
+    <p><strong>Posted by:</strong> {{ post.user.username }}</p>
+
+    <p><strong>Published on:</strong> {{ post.pub_date }}</p>
+
+    <p><strong>Last modified:</strong> {{ post.mod_date }}</p>
+
+    {% if post.tags %}
+        <p><strong>Tags:</strong> {{ post.tags }}</p>
+    {% endif %}
+
+    <form method="post" action="{% url 'gallery:detail' post.id %}">
+        {% csrf_token %}
+        <button type="submit" name="delete">Delete</button>
+    </form>
+
+</body>
+</html>
