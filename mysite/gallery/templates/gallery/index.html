@@ -1,4 +1,5 @@
-<!DOCTYPE html>
+{% extends "base.html" %}
+{% comment %} <!DOCTYPE html>
 <html lang="en">
     <head>
         <meta charset="UTF-8">
@@ -9,7 +10,8 @@
         </script>
         <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js">
         </script>
-    </head>
+    </head> {% endcomment %}
+{% block content %}
     <body>
         <div class="col-md-12">
             <h1>Gallery</h1>
@@ -41,4 +43,5 @@
 
 
     </body>
-</html>
+{% endblock %}
+{% comment %} </html> {% endcomment %}
