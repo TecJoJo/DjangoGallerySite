@@ -11,14 +11,33 @@
   <title>{% block title %}Django Examples{% endblock %}</title>
     {% block stylesheet %}
     <style>
+     
     </style>
+    
     {% endblock %}  <!-- HERE -->
   </head>
-  <body>
+  <body class="bg-body-tertiary">
     {% block body %}  <!-- HERE -->
-      <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
-        <div class="container">
-          <a class="navbar-brand" href="{% url 'home' %}">Django Examples Home</a>
+      <nav class="nav navbar-expand-md navbar-dark .bg-light shadow-sm " >
+        <div class="container-fluid d-flex justify-content-end" >
+          <div class="flex-column d-flex">
+            
+            
+            {% if user.is_authenticated %}
+             
+            <p><a href="{% url 'gallery:image_upload' %}">Upload your images</a></p>
+            <form method="post" action="{% url 'logout' %}">
+              {% csrf_token %}
+              <button type="submit">Logout</button>
+            </form>
+            {% else%}
+            <p><a  href="{% url 'home' %}">login</a></p>
+            {% endif%}
+
+         
+            
+        </div>
+         
         </div>
       </nav>
       <div class="container">
