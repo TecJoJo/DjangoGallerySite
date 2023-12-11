@@ -22,7 +22,7 @@ def display_images(request):
 
 def image_upload(request):
     
-    size = (300, 300)
+    size = (1280, 720)
 
     if request.method == 'POST':
         # Get the uploaded image file

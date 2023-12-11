@@ -10,8 +10,12 @@
 
     </div>
     {% if user.is_authenticated %}
-    <h1>Welcome {{ user.username }}, how was your day?</h1>
-    <h1>Your recent posts</h1>
+    <h1 class="font-monospace">Welcome {{ user.username }}</h1>
+    <h2 class="font-monospace">how was your day?</h2>
+    <hr> 
+    {%if user_posts%}
+    <h3>Your recent posts</h3>
+    <div class="space-holder"></div>
     <div class="container">
         <div class="row">
             {% for post in user_posts %}
@@ -23,8 +27,8 @@
                         <p>{{ post.description }}</p>
                     </div>
                     <div class="card-footer">
-                        <p>by:{{post.user.username}} </p>
-                        <p> <a href={% url "gallery:detail" post.id %}>Check in detail</a></p>
+                        <p class="font-monospace" >by:{{post.user.username}} </p>
+                        <p class="font-monospace"> <a class="link-primary link-offset-2 link-underline-opacity-25 link-underline-opacity-100-hover" href={% url "gallery:detail" post.id %}>Check in detail</a></p>
                     </div>
                 </div>
             </div>
@@ -32,29 +36,31 @@
         </div>
     </div>
     {% endif %}
+    {% endif %}
 
-
-    <h1>Posts by other users</h1>
+    {%if rest_posts%}
+    <h3>Posts by other users</h3>
     <div class="container">
         <div class="row">
             {% for post in rest_posts %}
             <div class="col-md-4">
 
                 <div class="card mt-4">
-                    <a href={% url "gallery:detail" post.id %}><img src="{{ post.image.url }}"
+                    <a href={% url "gallery:detail" post.id %}><img src="/media/thumbnails/{{post.id}}_thumbnail.jpg" alt="Thumbnail"
                             class="card-img-top img-thumbnail" /></a>
                     <div class="card-body">
                         <p>{{ post.description }}</p>
                     </div>
                     <div class="card-footer">
-                        <p>by:{{post.user.username}} </p>
-                        <p> <a href={% url "gallery:detail" post.id %}>Check in detail</a></p>
+                        <p >by :{{post.user.username}} </p>
+                        <p> <a class="link-primary link-offset-2 link-underline-opacity-25 link-underline-opacity-100-hover" href={% url "gallery:detail" post.id %}>Check in detail</a></p>
                     </div>
                 </div>
             </div>
             {% endfor %}
         </div>
     </div>
+    {% endif %}
 
 
 

@@ -24,14 +24,19 @@
             
             
             {% if user.is_authenticated %}
+            
              
-            <p><a href="{% url 'gallery:image_upload' %}">Upload your images</a></p>
+            
             <form method="post" action="{% url 'logout' %}">
               {% csrf_token %}
-              <button type="submit">Logout</button>
+              <div class="input-group">
+                <a class="btn btn-outline-dark" href="{% url 'gallery:image_upload' %}" >Upload your images</a>
+                <button type=" submit" class="btn btn-outline-secondary">Logout</button>
+              </div>
+              
             </form>
             {% else%}
-            <p><a  href="{% url 'home' %}">login</a></p>
+            <a  href="{% url 'home' %}" class="btn btn-outline-dark">Login Page</a>
             {% endif%}
 
          
@@ -49,7 +54,9 @@
         {% endblock %}
 	  {% block footer %}
 	<hr>
-	<footer>terms policy copyright</footer>
+	<footer>
+    <p class="mb-1">(c) Yao Lu 2023</p>
+    <p>All rights reserved. No part of this website may be reproduced without permission.</p></footer>
 	{% endblock footer %}
       </div>
     {% endblock body %}  <!-- AND HERE -->
