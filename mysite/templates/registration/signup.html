@@ -3,9 +3,16 @@
 <h2>Sign up</h2>
 <form method="post" novalidate>
   {% csrf_token %}
-  <table>
-  {{ form.as_table }}
-  </table>
-  <button type="submit">Create an account</button>
+  <div class="row align-items-center" style="height:50vh">
+    <div class="col-md-12">
+      <table>
+      {{ form.as_table }}
+    </table>
+    </div>
+    <div class="col-md-2"><button type="submit">Create an account</button></div>
+    
+  </div>
+
+  
 </form>
 {% endblock %}
