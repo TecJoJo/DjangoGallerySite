@@ -1,4 +1,5 @@
 from django.shortcuts import render,redirect
+from django.conf import settings
 from gallery.models import Post
 from django.contrib.auth.models import User
 from gallery.forms import UploadForm
@@ -75,15 +76,35 @@ def image_upload(request):
 
 
 
-def image_detail(request,pk):
+def image_detail(request, pk):
     if request.method == "GET":
         post = Post.objects.get(pk=pk)
-        
-        return render(request,"gallery/detail.html",{"post":post})
+        return render(request, "gallery/detail.html", {"post": post})
     
     if request.method == "POST":
         post_to_delete = Post.objects.get(pk=pk)
+        print("Image path:", post_to_delete.image.path)
+
+        
+        # Delete the image file
+        if os.path.exists(post_to_delete.image.path):
+            os.remove(post_to_delete.image.path)
+            print("post photo is deleted", post_to_delete.image.path)
+        else:
+            print("image file does not exist")
+
+        # Construct the correct path for the thumbnail
+        thumbnail_path = os.path.join(settings.MEDIA_ROOT, "thumbnails", f"{post_to_delete.id}_thumbnail.jpg")
+
+        # Delete the thumbnail file
+        if os.path.exists(thumbnail_path):
+            os.remove(thumbnail_path)
+            print("thumbnail file is deleted", thumbnail_path)
+        else:
+            print("thumbnail file does not exist")
+
         post_to_delete.delete()
+
         return redirect("gallery:display_images")
 
 
