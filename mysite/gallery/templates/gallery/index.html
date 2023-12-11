@@ -18,8 +18,7 @@
             <div class="col-md-4">
 
                 <div class="card mt-4">
-                    <a href={% url "gallery:detail" post.id %}><img src="{{ post.image.url }}"
-                            class="card-img-top" /></a>
+                    <a href={% url "gallery:detail" post.id %}><img class="card-img-top img-thumbnail" src="/media/thumbnails/{{post.id}}_thumbnail.jpg" alt="Thumbnail"></a>
                     <div class="card-body">
                         <p>{{ post.description }}</p>
                     </div>
@@ -43,7 +42,7 @@
 
                 <div class="card mt-4">
                     <a href={% url "gallery:detail" post.id %}><img src="{{ post.image.url }}"
-                            class="card-img-top" /></a>
+                            class="card-img-top img-thumbnail" /></a>
                     <div class="card-body">
                         <p>{{ post.description }}</p>
                     </div>
